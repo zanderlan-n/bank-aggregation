@@ -1,9 +1,14 @@
+enum TransactionType {
+  DEBIT = 'DEBIT',
+  CREDIT = 'CREDIT',
+}
+
 class Bank2AccountTransaction {
   amount: number
-  type: 'credit' | 'debit'
+  type: TransactionType
   text: string
 
-  constructor(amount: number, type: 'credit' | 'debit', text: string) {
+  constructor(amount: number, type: TransactionType, text: string) {
     this.amount = amount
     this.type = type
     this.text = text
@@ -51,9 +56,9 @@ export class Bank2AccountSource {
     toDate: Date,
   ): Bank2AccountTransaction[] {
     return [
-      new Bank2AccountTransaction(125, 'debit', 'Amazon.com'),
-      new Bank2AccountTransaction(500, 'debit', 'Car insurance'),
-      new Bank2AccountTransaction(800, 'credit', 'Salary'),
+      new Bank2AccountTransaction(125, TransactionType.DEBIT, 'Amazon.com'),
+      new Bank2AccountTransaction(500, TransactionType.DEBIT, 'Car insurance'),
+      new Bank2AccountTransaction(800, TransactionType.CREDIT, 'Salary'),
     ]
   }
 }

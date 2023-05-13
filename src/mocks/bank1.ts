@@ -1,4 +1,4 @@
-class Bank1Transaction {
+export class Bank1Transaction {
   public static TYPE_CREDIT = 1
   public static TYPE_DEBIT = 2
 
