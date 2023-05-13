@@ -46,14 +46,14 @@ class Bank2AccountBalance {
 }
 
 export class Bank2AccountSource {
-  public getBalance(accountNum: number): Bank2AccountBalance {
+  public getBalance(_accountNum: number): Bank2AccountBalance {
     return new Bank2AccountBalance(512.5, 'USD')
   }
 
   public getTransactions(
-    accountNum: number,
-    fromDate: Date,
-    toDate: Date,
+    _accountNum: number,
+    _fromDate: Date,
+    _toDate: Date,
   ): Bank2AccountTransaction[] {
     return [
       new Bank2AccountTransaction(125, TransactionType.DEBIT, 'Amazon.com'),

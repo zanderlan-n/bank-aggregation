@@ -26,17 +26,17 @@ export class Bank1Transaction {
 }
 
 export class Bank1AccountSource {
-  getAccountBalance(accountId: number): number {
+  getAccountBalance(_accountId: number): number {
     return 215.5
   }
-  getAccountCurrency(accountId: number): string {
+  getAccountCurrency(_accountId: number): string {
     return 'USD'
   }
 
   getTransactions(
-    accountId: number,
-    fromDate: Date,
-    toDate: Date,
+    _accountId: number,
+    _fromDate: Date,
+    _toDate: Date,
   ): Bank1Transaction[] {
     return [
       new Bank1Transaction(100, Bank1Transaction.TYPE_CREDIT, 'Check deposit'),

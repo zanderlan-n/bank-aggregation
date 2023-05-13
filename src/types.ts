@@ -1,5 +1,5 @@
 export interface IAccountSource {
-  getAccountBalance(accountId: number): number
+  getAccountBalance(accountId: number): string
   getAccountCurrency(accountId: number): string
   getTransactions(
     accountId: number,

@@ -1,3 +1,4 @@
+import { print } from '../lib/print'
 import { IAccountSource } from '../types'
 
 export class BankController {
@@ -7,14 +8,22 @@ export class BankController {
   ) {}
 
   public printBalances() {
-    console.log('Account balances:')
+    print('Account balances:')
+    const bank1AccountId = 123
+    const bank2AccountId = 456
 
-    console.log(`Bank 1: ${this.bank1Adapter.getAccountBalance(123)}`)
-    console.log(`Bank 2: ${this.bank2Adapter.getAccountBalance(456)}`)
+    const bank1Balance = this.bank1Adapter.getAccountBalance(bank1AccountId)
+    const bank2Balance = this.bank2Adapter.getAccountBalance(bank2AccountId)
+
+    const bank1BalanceString = `Bank 1: ${bank1Balance}`
+    const bank2BalanceString = `Bank 2: ${bank2Balance}`
+
+    print(bank1BalanceString)
+    print(bank2BalanceString)
   }
 
   public printTransactions() {
-    console.log('Account transactions:')
+    print('Account transactions:')
 
     const fromDate = new Date('2023-05-01')
     const toDate = new Date('2023-05-31')
@@ -24,19 +33,15 @@ export class BankController {
       fromDate,
       toDate,
     )
-    console.log('Bank 1:')
-    bank1Transactions.forEach((t) =>
-      console.log(`  ${t.text} ${t.amount} ${t.type}`),
-    )
+    print('Bank 1:')
+    bank1Transactions.forEach((t) => print(`  ${t.text} ${t.amount} ${t.type}`))
 
     const bank2Transactions = this.bank2Adapter.getTransactions(
       456,
       fromDate,
       toDate,
     )
-    console.log('Bank 2:')
-    bank2Transactions.forEach((t) =>
-      console.log(`  ${t.text} ${t.amount} ${t.type}`),
-    )
+    print('Bank 2:')
+    bank2Transactions.forEach((t) => print(`  ${t.text} ${t.amount} ${t.type}`))
   }
 }

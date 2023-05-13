@@ -1,13 +1,14 @@
+import { formatCurrency } from '../lib/currency'
 import { Bank2AccountSource } from '../mocks/bank2'
-import { IAccountSource } from '../types'
-import { IAccountTransaction } from '../types'
+import { IAccountSource, IAccountTransaction } from '../types'
 
 export class Bank2Adapter implements IAccountSource {
   constructor(private accountSource: Bank2AccountSource) {}
 
-  public getAccountBalance(accountId: number): number {
-    const balance = this.accountSource.getBalance(accountId)
-    return balance.getBalance()
+  public getAccountBalance(accountId: number): string {
+    const accountBalance = this.accountSource.getBalance(accountId)
+
+    return formatCurrency(accountBalance.balance, accountBalance.currency)
   }
 
   public getAccountCurrency(accountId: number): string {
