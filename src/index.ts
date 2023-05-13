@@ -1,6 +1,6 @@
-import { Bank1Adapter } from './adapters/bank1_adapter'
+import { Bank1Adapter } from './adapters/bank1-adapter'
 import { Bank2Adapter } from './adapters/bank2_adapter'
-import { BankController } from './controllers/bank_controller'
+import { BankController } from './controllers/bank-controller'
 import { Bank1AccountSource, Bank2AccountSource } from './mocks'
 
 console.info('Bank Aggregation')
