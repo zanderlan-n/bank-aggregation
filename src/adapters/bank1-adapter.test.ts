@@ -1,19 +1,50 @@
-import { Bank1AccountSource } from '../mocks'
+import { Bank1AccountSource } from '../integration/bank1/account-source'
+import { Bank1Transaction } from '../integration/bank1/transaction'
 import { Bank1Adapter } from './bank1-adapter'
+
+const getMockBank1Transaction = (
+  amount: number,
+  type: number,
+  text: string,
+) => {
+  return {
+    getAmount: jest.fn(() => amount),
+    getType: jest.fn(() => type),
+    getText: jest.fn(() => text),
+  }
+}
+
+const bank1AccountSource: Bank1AccountSource = {
+  getAccountBalance: jest.fn((_accountId: number) => 215.5),
+  getAccountCurrency: jest.fn((_accountId: number) => 'USD'),
+  getTransactions: jest.fn(
+    (_accountId: number, _fromDate: Date, _toDate: Date) => [
+      getMockBank1Transaction(
+        100,
+        Bank1Transaction.TYPE_CREDIT,
+        'Check deposit',
+      ),
+      getMockBank1Transaction(
+        25.5,
+        Bank1Transaction.TYPE_DEBIT,
+        'Debit card purchase',
+      ),
+      getMockBank1Transaction(225, Bank1Transaction.TYPE_DEBIT, 'Rent payment'),
+    ],
+  ),
+}
 
 describe('Bank1Adapter', () => {
   let bank1Adapter: Bank1Adapter
-  let bank1AccountSource: Bank1AccountSource
 
   beforeEach(() => {
-    bank1AccountSource = new Bank1AccountSource()
     bank1Adapter = new Bank1Adapter(bank1AccountSource)
   })
 
   describe('getAccountBalance', () => {
     it('should return the account balance', () => {
       const accountId = 123
-      const expectedBalance = '$215.50'
+      const expectedBalance = 215.5
 
       const accountBalance = bank1Adapter.getAccountBalance(accountId)
 
@@ -39,8 +70,16 @@ describe('Bank1Adapter', () => {
       const toDate = new Date('2023-05-31')
       const expectedTransactions = [
         { amount: 100, text: 'Check deposit', type: 'credit' },
-        { amount: 25.5, text: 'Debit card purchase', type: 'debit' },
-        { amount: 225, text: 'Rent payment', type: 'debit' },
+        {
+          amount: 25.5,
+          text: 'Debit card purchase',
+          type: 'debit',
+        },
+        {
+          amount: 225,
+          text: 'Rent payment',
+          type: 'debit',
+        },
       ]
 
       const transactions = bank1Adapter.getTransactions(

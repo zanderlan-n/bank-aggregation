@@ -1,6 +1,5 @@
-import { formatCurrency } from '../lib/currency'
-import { Bank1AccountSource } from '../mocks'
-import { Bank1Transaction } from '../mocks/bank1'
+import { Bank1AccountSource } from '../integration/bank1/account-source'
+import { Bank1Transaction } from '../integration/bank1/transaction'
 import { IAccountSource, IAccountTransaction } from '../types'
 
 export class Bank1Adapter implements IAccountSource {
@@ -9,11 +8,10 @@ export class Bank1Adapter implements IAccountSource {
   public getAccountCurrency(accountId: number): string {
     return this.accountSource.getAccountCurrency(accountId)
   }
-  public getAccountBalance(accountId: number): string {
+  public getAccountBalance(accountId: number): number {
     const balance = this.accountSource.getAccountBalance(accountId)
-    const currency = this.getAccountCurrency(accountId)
 
-    return formatCurrency(balance, currency)
+    return balance
   }
 
   public getTransactions(

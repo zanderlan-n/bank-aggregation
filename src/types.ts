@@ -1,5 +1,5 @@
 export interface IAccountSource {
-  getAccountBalance(accountId: number): string
+  getAccountBalance(accountId: number): number
   getAccountCurrency(accountId: number): string
   getTransactions(
     accountId: number,
@@ -11,7 +11,7 @@ export interface IAccountSource {
 export interface IAccountTransaction {
   amount: number
   text: string
-  type: TRANSACTION_TYPE
+  type: TransactionType
 }
 
-export type TRANSACTION_TYPE = 'credit' | 'debit'
+export type TransactionType = 'credit' | 'debit'

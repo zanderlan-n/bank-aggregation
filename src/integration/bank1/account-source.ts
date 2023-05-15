@@ -1,29 +1,4 @@
-export class Bank1Transaction {
-  public static TYPE_CREDIT = 1
-  public static TYPE_DEBIT = 2
-
-  private amount: number
-  private type: number
-  private text: string
-
-  public constructor(amount: number, type: number, text: string) {
-    this.amount = amount
-    this.type = type
-    this.text = text
-  }
-
-  public getAmount(): number {
-    return this.amount
-  }
-
-  public getType(): number {
-    return this.type
-  }
-
-  public getText(): string {
-    return this.text
-  }
-}
+import { Bank1Transaction, IBank1Transaction } from './transaction'
 
 export class Bank1AccountSource {
   getAccountBalance(_accountId: number): number {
@@ -37,7 +12,7 @@ export class Bank1AccountSource {
     _accountId: number,
     _fromDate: Date,
     _toDate: Date,
-  ): Bank1Transaction[] {
+  ): IBank1Transaction[] {
     return [
       new Bank1Transaction(100, Bank1Transaction.TYPE_CREDIT, 'Check deposit'),
       new Bank1Transaction(
