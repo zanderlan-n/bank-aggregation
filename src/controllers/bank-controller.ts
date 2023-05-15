@@ -5,9 +5,8 @@ import { IAccountSource } from '../types'
 export class BankController {
   constructor(private source: IAccountSource) {}
 
-  public printBalances() {
+  public printBalances(accountId: number) {
     print('Account balances:')
-    const accountId = 123
 
     const balance = this.source.getAccountBalance(accountId)
     const currency = this.source.getAccountCurrency(accountId)
@@ -16,9 +15,8 @@ export class BankController {
     print(formattedBalance)
   }
 
-  public printTransactions() {
+  public printTransactions(accountId: number) {
     print('Account transactions:')
-    const accountId = 123
 
     const fromDate = new Date('2023-05-01')
     const toDate = new Date('2023-05-31')

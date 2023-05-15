@@ -13,10 +13,11 @@ const bank2Source = new Bank2Adapter(new Bank2AccountSource())
 const bank1Controller = new BankController(bank1Source)
 const bank2Controller = new BankController(bank2Source)
 
+const accountId = 123
 print('Bank 1')
-bank1Controller.printBalances()
-bank1Controller.printTransactions()
+bank1Controller.printBalances(accountId)
+bank1Controller.printTransactions(accountId)
 
 print('Bank 2')
-bank2Controller.printBalances()
-bank2Controller.printTransactions()
+bank2Controller.printBalances(accountId)
+bank2Controller.printTransactions(accountId)
