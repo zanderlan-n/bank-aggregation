@@ -1,6 +1,6 @@
 import { Bank2AccountSource } from '../integration/bank2/account-source'
 import { Bank2TransactionType } from '../integration/bank2/transaction'
-import { Bank2Adapter } from './bank2_adapter'
+import { Bank2Adapter } from './bank2-adapter'
 
 const getMockBank2Transaction = (
   amount: number,

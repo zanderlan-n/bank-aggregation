@@ -1,5 +1,5 @@
 import { Bank1Adapter } from './adapters/bank1-adapter'
-import { Bank2Adapter } from './adapters/bank2_adapter'
+import { Bank2Adapter } from './adapters/bank2-adapter'
 import { BankController } from './controllers/bank-controller'
 import { Bank1AccountSource } from './integration/bank1/account-source'
 import { Bank2AccountSource } from './integration/bank2/account-source'
