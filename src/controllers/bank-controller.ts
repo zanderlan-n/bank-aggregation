@@ -21,13 +21,13 @@ export class BankController {
     const fromDate = new Date('2023-05-01')
     const toDate = new Date('2023-05-31')
 
-    const bank1Transactions = this.source.getTransactions(
+    const bankTransactions = this.source.getTransactions(
       accountId,
       fromDate,
       toDate,
     )
     const currency = this.source.getAccountCurrency(accountId)
-    bank1Transactions.forEach((t) => {
+    bankTransactions.forEach((t) => {
       const formattedAmount = formatCurrency(t.amount, currency)
 
       print(`  ${t.text} - ${formattedAmount} - ${t.type}`)

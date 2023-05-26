@@ -4,6 +4,7 @@ import { BankController } from './bank-controller'
 describe('BankController', () => {
   let bankController: BankController
   let log: jest.SpyInstance
+  const mockId = 1234
   const mockSource: IAccountSource = {
     getAccountBalance: jest.fn().mockReturnValue(215.5),
     getAccountCurrency: jest.fn().mockReturnValue('USD'),
@@ -37,7 +38,7 @@ describe('BankController', () => {
 
   describe('printBalances', () => {
     it('should print  account balances', () => {
-      bankController.printBalances()
+      bankController.printBalances(mockId)
 
       expect(log).toHaveBeenNthCalledWith(1, 'Account balances:')
       expect(log).toHaveBeenNthCalledWith(2, '$215.50')
@@ -46,7 +47,7 @@ describe('BankController', () => {
 
   describe('printTransactions', () => {
     it('should print account transactions', () => {
-      bankController.printTransactions()
+      bankController.printTransactions(mockId)
 
       expect(log).toHaveBeenNthCalledWith(1, 'Account transactions:')
       expect(log).toHaveBeenNthCalledWith(
